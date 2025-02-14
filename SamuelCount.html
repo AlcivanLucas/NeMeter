@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NéContador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        #counter {
+            font-size: 100px;
+            color: #2c3e50;
+            margin: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NéContador 🤣</h1>
+        <div id="counter">0</div>
+        <button onclick="increment()">Mais um Né! 😅</button>
+        <button onclick="resetCounter()">Zerar</button>
+    </div>
+
+    <script>
+        let count = localStorage.getItem('neCount') || 0;
+        document.getElementById('counter').textContent = count;
+
+        function increment() {
+            count++;
+            updateDisplay();
+            saveCount();
+        }
+
+        function resetCounter() {
+            count = 0;
+            updateDisplay();
+            saveCount();
+        }
+
+        function updateDisplay() {
+            document.getElementById('counter').textContent = count;
+        }
+
+        function saveCount() {
+            localStorage.setItem('neCount', count);
+        }
+    </script>
+</body>
+</html>
