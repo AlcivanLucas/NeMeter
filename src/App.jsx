@@ -24,8 +24,31 @@ if (!firebase.apps.length) {
 
 const database = firebase.database();
 
+// representa a figurinha que sobe
+function Bubble({ id, onAnimationEnd }) {
+  return (
+    <div className="bubble" onAnimationEnd={() => onAnimationEnd(id)}>
+      🤯
+    </div>
+  );
+}
+
+
+
 function App() {
   const [counter, setCounter] = useState(0);
+  const [bubbles, setBubbles] = useState([]);
+
+  // Adiciona uma nova bolha com um id único (usando Date.now())
+  const addBubble = () => {
+    const id = Date.now();
+    setBubbles(prev => [...prev, id]);
+  };
+
+  // Remove a bolha após o término da animação
+  const removeBubble = (id) => {
+    setBubbles(prev => prev.filter(b => b !== id));
+  };
 
   // Efeito para escutar mudanças do contador em tempo real
   useEffect(() => {
@@ -54,9 +77,38 @@ function App() {
       <h1>Contando quantidade de vezes o Samuel fala "né"</h1>
       <div id="counter">{counter}</div>
       <div className="buttons">
-        <button onClick={increment}>➕ Mais um Né!🤯</button>
+        <button onClick={() => { addBubble(); increment(); }}>
+          ➕ Mais um Né!🤯
+        </button>
       </div>
+
+       <div className="bubble-container">
+         {bubbles.map(id => (
+         <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
+     ))}
     </div>
+      
+    </div>
+    // <div className="app-container">
+    //   <div className="main-content">
+    //     <div className="container">
+    //       <h1>Contando quantidade de vezes o Samuel fala né</h1>
+    //       <div id="counter">0</div>
+    //       <div className="buttons">
+    //         <button onClick={increment}>➕ Mais um Né!🤯</button>
+    //       </div>
+    //     </div>
+    //   </div>
+
+    //   {/* Container fixo para as bolhas (animações) */}
+    //   <div className="bubble-container">
+    //     {bubbles.map(id => (
+    //       <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
+    //     ))}
+    //   </div>
+    // </div>
+
+    
   );
 }
 
