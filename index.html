@@ -116,19 +116,19 @@
 
 
     <script>
-        // Configuração do Firebase (substitua com seus dados)
+        // Configuração do Firebase usando variáveis de ambiente
         const firebaseConfig = {
-            apiKey: "AIzaSyDzJaTjqjU8aegzrEsPy98dhhG5u02dgLc",
-            authDomain: "nemeter-7fdf0.firebaseapp.com",
-            databaseURL: "https://nemeter-7fdf0-default-rtdb.firebaseio.com",
-            projectId: "nemeter-7fdf0",
-            storageBucket: "nemeter-7fdf0.firebasestorage.app",
-            messagingSenderId: "124629134671",
-            appId: "1:124629134671:web:aa60c4541d26967beb293a"
+          apiKey: "{{FIREBASE_API_KEY}}",
+          authDomain: "{{FIREBASE_AUTH_DOMAIN}}",
+          databaseURL: "{{FIREBASE_DATABASE_URL}}",
+          projectId: "{{FIREBASE_PROJECT_ID}}",
+          storageBucket: "{{FIREBASE_STORAGE_BUCKET}}",
+          messagingSenderId: "{{FIREBASE_MESSAGING_SENDER_ID}}",
+          appId: "{{FIREBASE_APP_ID}}"
         };
-
-        // Inicialize o Firebase
+        
         firebase.initializeApp(firebaseConfig);
+     
         const database = firebase.database();
 
         // Referência ao contador no banco de dados
