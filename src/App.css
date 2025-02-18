@@ -285,3 +285,86 @@ button:active {
   border-radius: 20px;
   font-size: 0.9em;
 }
+
+
+
+
+
+
+
+
+
+/* Estilos do pop-up da entrada do nome do usuário */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.popup-content input {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+}
+
+.popup-content button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+/* Sidebar de usuários ativos */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  padding: 1rem;
+  background: #1a1a1a;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-list li {
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  background: #2d2d2d;
+  border-radius: 5px;
+}
+
+.active-users {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+
+/* Mantenha os outros estilos existentes para bubbles, counter, etc */

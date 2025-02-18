@@ -5,8 +5,7 @@ import './App.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
-// Configuração do Firebase (pode mover para variáveis de ambiente se quiser)
-
+// Configuração do Firebase
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -24,7 +23,6 @@ if (!firebase.apps.length) {
 
 const database = firebase.database();
 
-// representa a figurinha que sobe
 function Bubble({ id, onAnimationEnd }) {
   return (
     <div className="bubble" onAnimationEnd={() => onAnimationEnd(id)}>
@@ -33,85 +31,86 @@ function Bubble({ id, onAnimationEnd }) {
   );
 }
 
-
-
 function App() {
   const [counter, setCounter] = useState(0);
   const [bubbles, setBubbles] = useState([]);
+  const [activeUsers, setActiveUsers] = useState([]);
+  const [showPopup, setShowPopup] = useState(true);
+  const [username, setUsername] = useState('');
 
-  // Adiciona uma nova bolha com um id único (usando Date.now())
+  // Efeito para o contador
+  useEffect(() => {
+    const counterRef = database.ref('counter');
+    const listener = counterRef.on('value', (snapshot) => {
+      setCounter(snapshot.val() || 0);
+    });
+    return () => counterRef.off('value', listener);
+  }, []);
+
+  // Efeito para usuários ativos
+  useEffect(() => {
+    const presenceRef = database.ref('activeUsers');
+    const listener = presenceRef.on('value', (snapshot) => {
+      const users = snapshot.val();
+      setActiveUsers(users ? Object.values(users) : []);
+    });
+    return () => presenceRef.off('value', listener);
+  }, []);
+
+  const handleSubmitUsername = () => {
+    if (username.trim()) {
+      const presenceRef = database.ref('activeUsers');
+      const userRef = presenceRef.push();
+      userRef.set(username.trim());
+      userRef.onDisconnect().remove();
+      setShowPopup(false);
+    }
+  };
+
   const addBubble = () => {
     const id = Date.now();
     setBubbles(prev => [...prev, id]);
   };
 
-  // Remove a bolha após o término da animação
   const removeBubble = (id) => {
     setBubbles(prev => prev.filter(b => b !== id));
   };
 
-  // Efeito para escutar mudanças do contador em tempo real
-  useEffect(() => {
-    const counterRef = database.ref('counter');
-    const listener = counterRef.on('value', (snapshot) => {
-      const value = snapshot.val() || 0;
-      setCounter(value);
-    });
-
-    // Cleanup: remove o listener quando o componente desmontar
-    return () => {
-      counterRef.off('value', listener);
-    };
-  }, []);
-
-
-
-
-
-
-// Adicione este estado no seu componente App
-const [activeUsers, setActiveUsers] = useState(0);
-
-// Adicione este useEffect (pode ser junto com o outro)
-useEffect(() => {
-  const presenceRef = database.ref('activeUsers');
-  
-  // Cria uma referência única para este usuário/dispositivo
-  const userRef = presenceRef.push();
-  
-  // Adiciona este usuário à lista
-  userRef.set(true);
-  
-  // Remove automaticamente quando o usuário fecha o site
-  userRef.onDisconnect().remove();
-
-  // Atualiza o contador em tempo real
-  presenceRef.on('value', (snapshot) => {
-    setActiveUsers(snapshot.numChildren());
-  });
-
-  // Limpeza quando o componente desmontar
-  return () => {
-    userRef.remove();
-    presenceRef.off();
-  };
-}, []);
-
-
-
-
-
-
-  // Função para incrementar o contador no Firebase
   const increment = () => {
-    const counterRef = database.ref('counter');
-    counterRef.transaction((currentCount) => {
-      return (currentCount || 0) + 1;
-    });
+    database.ref('counter').transaction((count) => (count || 0) + 1);
   };
 
   return (
     <div className="container">
+      {/* Pop-up de username */}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <input
+              type="text"
+              placeholder="Digite seu nome de usuário"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSubmitUsername()}
+            />
+            <button onClick={handleSubmitUsername}>Entrar</button>
+          </div>
+        </div>
+      )}
+
+      {/* Sidebar de usuários ativos */}
+      <div className="sidebar">
+        <div className="active-users">
+          Usuários online: {activeUsers.length}
+        </div>
+        <ul className="user-list">
+          {activeUsers.map((user, index) => (
+            <li key={index}>{user}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Conteúdo principal */}
       <h1>Contando quantidade de vezes que o Samuel fala "né"</h1>
       <div id="counter">{counter}</div>
       <div className="buttons">
@@ -120,39 +119,12 @@ useEffect(() => {
         </button>
       </div>
 
-
-       <div className="bubble-container">
-         {bubbles.map(id => (
-         <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
-         ))}
+      <div className="bubble-container">
+        {bubbles.map(id => (
+          <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
+        ))}
       </div>
-
-     {/* Adicione este JSX onde quiser mostrar o contador */}
-      <div className="active-users">
-        Usuários online agora: {activeUsers}
-      </div>
-      
     </div>
-    // <div className="app-container">
-    //   <div className="main-content">
-    //     <div className="container">
-    //       <h1>Contando quantidade de vezes o Samuel fala né</h1>
-    //       <div id="counter">0</div>
-    //       <div className="buttons">
-    //         <button onClick={increment}>➕ Mais um Né!🤯</button>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   {/* Container fixo para as bolhas (animações) */}
-    //   <div className="bubble-container">
-    //     {bubbles.map(id => (
-    //       <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
-    //     ))}
-    //   </div>
-    // </div>
-
-    
   );
 }
 
