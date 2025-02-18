@@ -64,6 +64,44 @@ function App() {
     };
   }, []);
 
+
+
+
+
+
+// Adicione este estado no seu componente App
+const [activeUsers, setActiveUsers] = useState(0);
+
+// Adicione este useEffect (pode ser junto com o outro)
+useEffect(() => {
+  const presenceRef = database.ref('activeUsers');
+  
+  // Cria uma referência única para este usuário/dispositivo
+  const userRef = presenceRef.push();
+  
+  // Adiciona este usuário à lista
+  userRef.set(true);
+  
+  // Remove automaticamente quando o usuário fecha o site
+  userRef.onDisconnect().remove();
+
+  // Atualiza o contador em tempo real
+  presenceRef.on('value', (snapshot) => {
+    setActiveUsers(snapshot.numChildren());
+  });
+
+  // Limpeza quando o componente desmontar
+  return () => {
+    userRef.remove();
+    presenceRef.off();
+  };
+}, []);
+
+
+
+
+
+
   // Função para incrementar o contador no Firebase
   const increment = () => {
     const counterRef = database.ref('counter');
@@ -82,11 +120,17 @@ function App() {
         </button>
       </div>
 
+
        <div className="bubble-container">
          {bubbles.map(id => (
          <Bubble key={id} id={id} onAnimationEnd={removeBubble} />
-     ))}
-    </div>
+         ))}
+      </div>
+
+     {/* Adicione este JSX onde quiser mostrar o contador */}
+      <div className="active-users">
+        Usuários online agora: {activeUsers}
+      </div>
       
     </div>
     // <div className="app-container">

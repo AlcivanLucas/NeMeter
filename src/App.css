@@ -269,3 +269,19 @@ button:active {
     opacity: 0;
   }
 }
+
+
+
+
+
+
+.active-users {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9em;
+}
