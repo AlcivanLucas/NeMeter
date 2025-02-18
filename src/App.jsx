@@ -112,7 +112,7 @@ useEffect(() => {
 
   return (
     <div className="container">
-      <h1>Contando quantidade de vezes o Samuel fala "né"</h1>
+      <h1>Contando quantidade de vezes que o Samuel fala "né"</h1>
       <div id="counter">{counter}</div>
       <div className="buttons">
         <button onClick={() => { addBubble(); increment(); }}>
