@@ -1,0 +1,185 @@
+:root {
+    --primary-color: #6c5ce7;
+    --hover-color: #8577ef;
+    --background: #1a1a1a;
+    --text-color: #ffffff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  /* Como agora nosso componente é montado dentro de #root, 
+   podemos usar .container diretamente no App.jsx */
+  .container {
+    width: 100%;
+    max-width: 600px;
+    background: #2d2d2d;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  
+  #counter {
+    font-size: clamp(60px, 15vw, 100px);
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1 1 160px;
+    max-width: 200px;
+  }
+  
+  button:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 1rem;
+        flex: 1 1 100%;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Estilos gerais */
+  .app-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    /* Mantém o conteúdo centralizado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Reutilize o CSS original para .container, h1, #counter, .buttons, button, etc. */
+  .container {
+      width: 100%;
+      max-width: 600px;
+      background: #2d2d2d;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  
+  #counter {
+      font-size: clamp(60px, 15vw, 100px);
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  }
+  
+  .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+  
+  button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1 1 160px;
+      max-width: 200px;
+  }
+  
+  button:hover {
+      background: var(--hover-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:active {
+      transform: translateY(0);
+  }
+  
+  
+  
+/*  contador de usuáris ativos la no conta da tela */
+  .active-users {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+  }
+  
+  

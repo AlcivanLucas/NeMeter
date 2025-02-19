@@ -1,3 +1,6 @@
+/* esse css já não é mais usado, mas receio que eu não tenha copiado tuso */
+/* backup */
+
 :root {
   --primary-color: #6c5ce7;
   --hover-color: #8577ef;
@@ -168,6 +171,15 @@ button:active {
     transform: translateY(0);
 }
 
+
+
+
+
+
+
+
+
+
 /* Container para as bolhas */
 .bubble-container {
   position: fixed;
@@ -217,9 +229,7 @@ button:active {
     }
 }
 
-
 /*  css do zig zap  */
-
 
 /* Container para as bolhas (garante que a animação seja visível em toda a tela) */
 .bubble-container {
@@ -346,6 +356,7 @@ button:active {
   height: 100vh;
   padding: 1rem;
   background: #1a1a1a;
+
 }
 
 .user-list {

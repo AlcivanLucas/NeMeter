@@ -1,0 +1,99 @@
+/* Container para as bolhas */
+.bubble-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Para cliques passarem */
+  }
+  
+  /* Estilo da bolha e animação */
+  .bubble {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: bubbleRise 3s ease-out forwards;
+  }
+  
+  /* Keyframes para a animação "bubbleRise" */
+  @keyframes bubbleRise {
+    0% {
+      bottom: 0;
+      opacity: 0;
+      transform: translateX(-50%) translateY(0);
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      bottom: 100%;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+  
+  /* Responsividade (mantendo seus estilos originais) */
+  @media (max-width: 480px) {
+      .container {
+          padding: 1.5rem;
+          border-radius: 10px;
+      }
+      
+      button {
+          font-size: 1rem;
+          padding: 1rem;
+          flex: 1 1 100%;
+      }
+  }
+  
+  /*  css do zig zap  */
+  /* Container para as bolhas (garante que a animação seja visível em toda a tela) */
+  .bubble-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  
+  /* Estilo da bolha com animação complexa */
+  .bubble {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0;
+    animation: bubbleZigZag 4s ease-out forwards;
+  }
+  
+  /* Keyframes para a animação zig-zag */
+  @keyframes bubbleZigZag {
+    0% {
+      transform: translateX(-50%) translateY(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    25% {
+      /* Move para a esquerda e sobe */
+      transform: translateX(calc(-50% - 40px)) translateY(-25%);
+    }
+    50% {
+      /* Move para a direita e sobe mais */
+      transform: translateX(calc(-50% + 40px)) translateY(-50%);
+    }
+    75% {
+      /* Volta para a esquerda */
+      transform: translateX(calc(-50% - 40px)) translateY(-75%);
+    }
+    100% {
+      /* Finaliza centralizado no topo com opacidade 0 */
+      transform: translateX(-50%) translateY(-100%);
+      opacity: 0;
+    }
+  }
+  
