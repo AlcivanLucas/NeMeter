@@ -14,6 +14,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0', // Defina o IP de loopback
-    port: 5174, // Se desejar mudar a porta
+    port: 5173, // Se desejar mudar a porta
   },
 })

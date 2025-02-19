@@ -1,3 +1,10 @@
 // https://www.material-tailwind.com/docs/react/sidebar
 // https://flowbite-react.com/docs/components/sidebar
 // retractable sidebar react
+https://mui.com/material-ui/react-drawer/
+https://www.react-magic-motion.com/applications/collapsible-sidebar
+
+
+
+
+eu tenho um site em react, no qual há um div na lateral que quero que seja um callapsible siderbar ou seja quero que seja possivel recolher a div, ela fica na lateral esquerda do site e comporta o nome dos usuários ativos, mas em dispositivos mobile essa div fica por cima da div principal do site o que atrapalha na visibilidade do site 
