@@ -16,7 +16,7 @@ function Zeta() {
   const [showPopup, setShowPopup] = useState(true);
   const [username, setUsername] = useState('');
 
-  const { counter, increment } = useCounter();
+  const { counter, increment } = useCounter('zeta'); // Passar 'zeta' aqui
   const activeUsers = useActiveUsers();
 
   const handleSubmitUsername = () => {
@@ -51,6 +51,7 @@ function Zeta() {
       <CollapsibleSideBar activeUsers={activeUsers} />
 
       <MainContent
+        roomName="Zeta"
         counter={counter}
         increment={increment}
         bubbles={bubbles}

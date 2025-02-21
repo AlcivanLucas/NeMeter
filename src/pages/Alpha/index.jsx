@@ -16,7 +16,7 @@ function Alpha() {
   const [showPopup, setShowPopup] = useState(true);
   const [username, setUsername] = useState('');
 
-  const { counter, increment } = useCounter();
+  const { counter, increment } = useCounter('alpha'); // Garantir que está passando 'alpha'
   const activeUsers = useActiveUsers();
 
   const handleSubmitUsername = () => {
@@ -51,6 +51,7 @@ function Alpha() {
       <CollapsibleSideBar activeUsers={activeUsers} />
 
       <MainContent
+        roomName="Alpha"
         counter={counter}
         increment={increment}
         bubbles={bubbles}
