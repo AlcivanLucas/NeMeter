@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCounter } from '../../hooks/usersCounter';
 import { useActiveUsers } from '../../hooks/useActtiveUsers';
-import { UsernamePopup } from '../../components/usernamePopup';
+// import { UsernamePopup } from '../../components/usernamePopup';
 // import { ActiveUsersSidebar } from './components/activeUsersSidebar';
 import { MainContent } from '../../components/mainContent';
 import '../../App.css';
@@ -40,12 +40,12 @@ function Alpha() {
 
   return (
     <>
-      <UsernamePopup
+      {/* <UsernamePopup
         show={showPopup}
         username={username}
         setUsername={setUsername}
         handleSubmit={handleSubmitUsername}
-      />
+      /> */}
 
       {/* <ActiveUsersSidebar activeUsers={activeUsers} /> */}
       <CollapsibleSideBar activeUsers={activeUsers} />
