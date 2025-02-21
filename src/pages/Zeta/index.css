@@ -1,0 +1,381 @@
+/* esse css já não é mais usado, mas receio que eu não tenha copiado tuso */
+/* backup */
+
+:root {
+    --primary-color: #6c5ce7;
+    --hover-color: #8577ef;
+    --background: #1a1a1a;
+    --text-color: #ffffff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  /* Como agora nosso componente é montado dentro de #root, 
+   podemos usar .container diretamente no App.jsx */
+  .container {
+    width: 100%;
+    max-width: 600px;
+    background: #2d2d2d;
+    border-radius: 15px;
+    padding: 2rem;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  
+  #counter {
+    font-size: clamp(60px, 15vw, 100px);
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1 1 160px;
+    max-width: 200px;
+  }
+  
+  button:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 1rem;
+        flex: 1 1 100%;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Estilos gerais */
+  .app-container {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    /* Mantém o conteúdo centralizado */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Reutilize o CSS original para .container, h1, #counter, .buttons, button, etc. */
+  .container {
+      width: 100%;
+      max-width: 600px;
+      background: #2d2d2d;
+      border-radius: 15px;
+      padding: 2rem;
+      margin: auto;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary-color);
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  
+  #counter {
+      font-size: clamp(60px, 15vw, 100px);
+      text-align: center;
+      margin: 2rem 0;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px rgba(108, 92, 231, 0.4);
+  }
+  
+  .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+  
+  button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1 1 160px;
+      max-width: 200px;
+  }
+  
+  button:hover {
+      background: var(--hover-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  button:active {
+      transform: translateY(0);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Container para as bolhas */
+  .bubble-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Para cliques passarem */
+  }
+  
+  /* Estilo da bolha e animação */
+  .bubble {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: bubbleRise 3s ease-out forwards;
+  }
+  
+  /* Keyframes para a animação "bubbleRise" */
+  @keyframes bubbleRise {
+    0% {
+      bottom: 0;
+      opacity: 0;
+      transform: translateX(-50%) translateY(0);
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      bottom: 100%;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+  
+  /* Responsividade (mantendo seus estilos originais) */
+  @media (max-width: 480px) {
+      .container {
+          padding: 1.5rem;
+          border-radius: 10px;
+      }
+      
+      button {
+          font-size: 1rem;
+          padding: 1rem;
+          flex: 1 1 100%;
+      }
+  }
+  
+  /*  css do zig zap  */
+  
+  /* Container para as bolhas (garante que a animação seja visível em toda a tela) */
+  .bubble-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  
+  /* Estilo da bolha com animação complexa */
+  .bubble {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    opacity: 0;
+    animation: bubbleZigZag 4s ease-out forwards;
+  }
+  
+  /* Keyframes para a animação zig-zag */
+  @keyframes bubbleZigZag {
+    0% {
+      transform: translateX(-50%) translateY(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    25% {
+      /* Move para a esquerda e sobe */
+      transform: translateX(calc(-50% - 40px)) translateY(-25%);
+    }
+    50% {
+      /* Move para a direita e sobe mais */
+      transform: translateX(calc(-50% + 40px)) translateY(-50%);
+    }
+    75% {
+      /* Volta para a esquerda */
+      transform: translateX(calc(-50% - 40px)) translateY(-75%);
+    }
+    100% {
+      /* Finaliza centralizado no topo com opacidade 0 */
+      transform: translateX(-50%) translateY(-100%);
+      opacity: 0;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  .active-users {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Estilos do pop-up da entrada do nome do usuário */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .popup-content input {
+    padding: 0.5rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+  }
+  
+  .popup-content button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* Sidebar de usuários ativos */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    padding: 1rem;
+    background: #1a1a1a;
+  
+  }
+  
+  .user-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-list li {
+    padding: 0.5rem;
+    margin: 0.25rem 0;
+    background: #2d2d2d;
+    border-radius: 5px;
+  }
+  
+  .active-users {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  
+  
+  /* Mantenha os outros estilos existentes para bubbles, counter, etc */

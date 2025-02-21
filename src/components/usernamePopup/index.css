@@ -1,36 +1,162 @@
-/* Estilos do pop-up da entrada do nome do usuário */
+/* Estilos atualizados do pop-up */
 .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.popup-content {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transform: scale(0.95);
+  opacity: 0;
+  animation: popIn 0.3s ease-out forwards;
+}
+
+@keyframes popIn {
+  to {
+      transform: scale(1);
+      opacity: 1;
   }
-  
+}
+
+.popup-content h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.intro-text {
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.room-selector {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.room-card {
+  display: block;
+  padding: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: #f8f9fa;
+}
+
+.room-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.room-card.alpha {
+  border-color: #3498db;
+}
+
+.room-card.zeta {
+  border-color: #2ecc71;
+}
+
+.room-card h3 {
+  color: #2c3e50;
+  margin: 0 0 0.5rem 0;
+}
+
+.room-card p {
+  color: #7f8c8d;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .room-card {
+  background: rgba(52, 152, 219, 0.1);
+  border-width: 3px;
+}
+
+.input-group {
+  margin: 2rem 0;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #3498db, #6c5ce7);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+button[type="submit"]:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
   .popup-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
+      padding: 1.5rem;
   }
   
-  .popup-content input {
-    padding: 0.5rem;
-    margin-right: 1rem;
-    font-size: 1rem;
+  .room-card {
+      padding: 1rem;
   }
-  
-  .popup-content button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+}
